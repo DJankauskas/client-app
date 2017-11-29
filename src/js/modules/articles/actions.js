@@ -2,9 +2,12 @@ import axios from "axios";
 import { STUY_SPEC_API_URL, STUY_SPEC_API_HEADERS } from "../../constants";
 import * as t from "./actionTypes";
 import { reset } from "redux-form";
+import appHistory from "tools/appHistory";
 
 export const searchArticles = query => {
   query = query.search;
+  const url = "/search/q/" + query;
+  appHistory.push(url);
   return dispatch => {
     dispatch({ type: t.SEARCH_ARTICLES_PENDING });
     axios
@@ -18,6 +21,7 @@ export const searchArticles = query => {
           payload: response.data,
         });
         dispatch(reset("search"));
+
       })
       .catch(err => {
         dispatch({

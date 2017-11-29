@@ -183,6 +183,12 @@ class RoutingApp extends Component {
                   component={SearchPage}
                 />
                 <Route
+                    exact
+                    path={"/search/q/:query"}
+                    key={"searchWithQuery"}
+                    component={SearchPage}
+                />
+                <Route
                   path="/404-page-not-found"
                   key={"notFound"}
                   component={NotFoundPage}
