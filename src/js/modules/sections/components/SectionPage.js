@@ -1,4 +1,4 @@
-// TODO: SECTINOPAGE IS LITERALLY A MESS
+// TODO: SECTION PAGE IS LITERALLY A MESS
 
 import React from "react";
 import { connect } from "react-redux";
@@ -12,12 +12,11 @@ import { ArticleList } from "../../articles/components";
 import { getSectionTreeArticles } from "../../articles/selectors";
 import { getDirectSubsections } from "../../sections/selectors";
 import SectionColumn from "./SectionColumn";
-import {
-  LeftTitleArticle,
-} from "../../articles/components/summaries";
-import { Dateline, Byline } from "../../articles/components/index";
+import { LeftTitleArticle } from "../../articles/components/summaries";
 import SectionFeature from "./SectionFeature";
 import { TallAd } from "../../advertisements/components/index";
+import SectionFeaturedMedia from "./SectionFeaturedMedia";
+import SectionFeaturedArticle from './SectionFeaturedArticle'
 
 // TODO: STYLE SECONDARY ARTICLE. consider setting a max height
 
@@ -25,11 +24,11 @@ const styles = {
   subsectionBar: {
     margin: "0 0 28px 0",
     padding: 0,
-    textAlign: "center",
+    textAlign: "center"
   },
   featuredRow: {
     borderBottom: "1px solid #ddd",
-    paddingBottom: "18px",
+    paddingBottom: "18px"
   },
   featuredMedia: {
     "& figure": {
@@ -38,9 +37,9 @@ const styles = {
       overflow: "hidden",
       width: "100%",
       "& img": {
-        width: "100%",
-      },
-    },
+        width: "100%"
+      }
+    }
   },
   featuredArticle: {
     marginLeft: "55px",
@@ -50,15 +49,15 @@ const styles = {
     "& a": {
       color: "#000",
       "&:hover": {
-        color: "#000",
+        color: "#000"
       },
       "&:active": {
-        color: "#000",
+        color: "#000"
       },
       "&:focus": {
-        color: "#000",
-      },
-    },
+        color: "#000"
+      }
+    }
   },
   featuredArticleSection: {
     display: "block",
@@ -66,7 +65,7 @@ const styles = {
     fontSize: "13px",
     fontWeight: 300,
     marginBottom: "8px",
-    textTransform: "uppercase",
+    textTransform: "uppercase"
   },
   featuredArticleTitle: {
     display: "block",
@@ -74,35 +73,35 @@ const styles = {
     fontSize: "40px",
     fontWeight: 300,
     lineHeight: "48px",
-    marginBottom: "13px",
+    marginBottom: "13px"
   },
   featuredArticleSummary: {
     fontFamily: "Minion Pro",
     fontSize: "16px",
     lineHeight: 1.25,
-    marginBottom: "18px",
+    marginBottom: "18px"
   },
   secondaryRow: {
     marginBottom: "18px",
     borderBottom: "1px solid #ddd",
-    paddingBottom: "18px",
+    paddingBottom: "18px"
   },
   secondaryCol: {
-    paddingRight: "0 !important",
+    paddingRight: "0 !important"
   },
   SectionFeatureContainer: {
     borderBottom: "1px solid #ddd",
     marginBottom: "18px",
     marginRight: "14px",
     "& div": {
-      borderTop: "none",
-    },
+      borderTop: "none"
+    }
   },
   TallAdContainer: {
     borderLeft: "1px solid #ddd",
     marginTop: "24px",
     paddingLeft: "14px !important",
-    paddingRight: "0 !important",
+    paddingRight: "0 !important"
   },
   subsectionListItem: {
     borderBottom: "solid 1px #ddd",
@@ -110,8 +109,8 @@ const styles = {
     textDecoration: "none",
     padding: "0 26px 10px 0",
     "&:last-child": {
-      paddingRight: 0,
-    },
+      paddingRight: 0
+    }
   },
   subsectionLink: {
     color: "#000",
@@ -120,12 +119,12 @@ const styles = {
     fontWeight: 300,
     "&:hover": {
       color: "#000",
-      textDecoration: "none",
+      textDecoration: "none"
     },
     "&:focus": {
       color: "#000",
-      textDecoration: "none",
-    },
+      textDecoration: "none"
+    }
   },
   latestArticles: {
     borderRight: "solid 1px #ddd",
@@ -134,81 +133,81 @@ const styles = {
     "& > div:last-child": {
       // articleBlocks
       border: "none",
-      margin: 0,
-    },
+      margin: 0
+    }
   },
   emptySpace: {
     height: "20px",
     margin: 0,
-    padding: 0,
+    padding: 0
   },
   sectionColumnContainer: {
     "& > div": {
-      borderLeft: "none",
-    },
+      borderLeft: "none"
+    }
   },
   SubsectionPage: {
     marginTop: "80px",
     "& div > div": {
-      borderRight: 0,
-    },
+      borderRight: 0
+    }
   },
   "@media (min-width: 992px)": {
     SectionPage: {
-      marginTop: "46px",
+      marginTop: "46px"
     },
     SectionFeatureContainer: {
-      marginRight: "14px !important",
-    },
+      marginRight: "14px !important"
+    }
   },
   "@media (min-width: 768px)": {
     SectionFeatureContainer: {
-      marginRight: 0,
-    },
+      marginRight: 0
+    }
   },
   "@media (max-width: 991px)": {
     SectionPage: {
-      marginTop: "-16px", // counters PageContainer.marginTop = 60px
+      marginTop: "-16px" // counters PageContainer.marginTop = 60px
     },
     featuredArticle: {
       marginLeft: 0,
       paddingTop: "3vw",
-      width: "41.666666%", // col-sm-5
+      width: "41.666666%" // col-sm-5
     },
     featuredArticleTitle: {
       fontSize: "4vw",
-      lineHeight: "4.4vw",
+      lineHeight: "4.4vw"
     },
     featuredArticleSummary: {
       margin: "0 auto 18px auto",
-      width: "80%",
-    },
+      width: "80%"
+    }
   },
   "@media (max-width: 767px)": {
     latestArticles: {
       borderRight: "none",
-      paddingRight: 0,
+      paddingRight: 0
     },
     featuredMedia: {
       paddingRight: "0 !important",
       "& figure": {
-        maxHeight: "50vh",
+        maxHeight: "50vh"
       },
       "& figure img": {
         marginLeft: "-14px",
-        width: "100vw",
-      },
+        width: "100vw"
+      }
     },
     featuredArticle: {
       padding: "14px 0 0 0 !important",
-      width: "100%",
+      width: "100%"
     },
     SectionFeatureContainer: {
       borderBottom: 0,
       borderRight: 0,
-      marginRight: "0 !important",
-    },
-  },
+      marginRight: "0 !important"
+    }
+  }
 };
 
 const SectionPage = ({
@@ -216,13 +215,15 @@ const SectionPage = ({
   sectionTreeArticles,
   directSubsections,
   section,
-  media,
+  media
 }) => {
   if (section.parentId || section.name === "News") {
     return (
       <Grid fluid className={classes.SubsectionPage}>
         <Helmet>
-          <title>{section.name} | The Stuyvesant Spectator</title>
+          <title>
+            {section.name} | The Stuyvesant Spectator
+          </title>
           <meta />
         </Helmet>
         <Row>
@@ -259,10 +260,10 @@ const SectionPage = ({
     return Object.values(media).find(medium => medium.articleId === article.id);
   });
   const featuredMedia = Object.values(media).find(
-    image => image.articleId === featuredArticle.id,
+    medium => medium.articleId === featuredArticle.id
   );
   let featuredArticleSection = Object.values(directSubsections).find(
-    subsection => subsection.id === featuredArticle.sectionId,
+    subsection => subsection.id === featuredArticle.sectionId
   );
   if (!featuredArticleSection) {
     featuredArticleSection = section;
@@ -271,7 +272,7 @@ const SectionPage = ({
   let secondaryArticle = Object.values(sectionTreeArticles).find(
     article =>
       article !== featuredArticle &&
-      Object.values(media).find(medium => medium.articleId === article.id),
+      Object.values(media).find(medium => medium.articleId === article.id)
   );
   if (!secondaryArticle) {
     secondaryArticle = Object.values(sectionTreeArticles)[1];
@@ -283,8 +284,9 @@ const SectionPage = ({
   } else if (section.name === "Humor") {
     hardcodedSubsection = "Spooktator";
   }
+
   const featuredSubsection = Object.values(
-    directSubsections,
+    directSubsections
   ).find(subsection => {
     if (hardcodedSubsection) {
       return subsection.name === hardcodedSubsection;
@@ -296,12 +298,12 @@ const SectionPage = ({
   return (
     <Grid fluid className={classes.SectionPage}>
       <Helmet titleTemplate="%s | The Stuyvesant Spectator">
-        <title>{section.name}</title>
+        <title>
+          {section.name}
+        </title>
         <meta />
       </Helmet>
-      {isObjectEmpty(directSubsections) ? (
-        <div className={classes.emptySpace} />
-      ) : (
+      {!isObjectEmpty(directSubsections) &&
         <ul className={classes.subsectionBar}>
           {Object.values(directSubsections).map(subsection => {
             return (
@@ -315,56 +317,30 @@ const SectionPage = ({
               </li>
             );
           })}
-        </ul>
-      )}
-
+        </ul>}
       <Row className={classes.featuredRow}>
-        {featuredMedia && (
+        {featuredMedia &&
           <Col xs={12} sm={7} md={7} lg={7} className={classes.featuredMedia}>
-            <Link
-              to={`${featuredArticleSection.permalink}/${featuredArticle.slug}`}
-            >
-              <figure>
-                <img src={featuredMedia.attachmentUrl} />
-              </figure>
-            </Link>
-          </Col>
-        )}
+            <SectionFeaturedMedia
+              section={featuredArticleSection}
+              featuredArticle={featuredArticle}
+              featuredMedia={featuredMedia}
+            />
+          </Col>}
         <Col xs={12} sm={5} md={5} lg={5} className={classes.featuredArticle}>
-          <Link
-            className={classes.featuredArticleSection}
-            to={featuredArticleSection.permalink}
-          >
-            {featuredArticleSection.name === "Arts & Entertainment" ? (
-              "A&E"
-            ) : (
-              featuredArticleSection.name
-            )}
-          </Link>
-          <Link
-            className={classes.featuredArticleTitle}
-            to={`${featuredArticleSection.permalink}/${featuredArticle.slug}`}
-          >
-            {featuredArticle.title}
-          </Link>
-          <p className={classes.featuredArticleSummary}>
-            {featuredArticle.summary}
-          </p>
-          <Byline contributors={featuredArticle.contributors} />
-          <Dateline article={featuredArticle} />
+          <SectionFeaturedArticle/>
         </Col>
       </Row>
 
       <Row className={classes.secondaryRow}>
         <Col xs={12} sm={12} md={9} lg={9} className={classes.secondaryCol}>
-          {featuredSubsection && (
+          {featuredSubsection &&
             <div className={classes.SectionFeatureContainer}>
               <SectionFeature
                 section={featuredSubsection}
                 without={featuredArticle}
               />
-            </div>
-          )}
+            </div>}
           <LeftTitleArticle article={secondaryArticle} />
         </Col>
         <Col
@@ -400,7 +376,7 @@ const mapStateToProps = (state, ownProps) => ({
   sectionTreeArticles: getSectionTreeArticles(state, ownProps),
   directSubsections: getDirectSubsections(state, ownProps),
   sections: state.sections.sections,
-  media: state.media.media,
+  media: state.media.media
 });
 
 export default connect(mapStateToProps, null)(injectSheet(styles)(SectionPage));

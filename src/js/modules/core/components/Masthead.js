@@ -16,8 +16,8 @@ const styles = {
     margin: "24px auto 19px auto",
     textAlign: "center",
     "& button:focus": {
-      outline: 0,
-    },
+      outline: 0
+    }
   },
   theSpectatorLogo: {
     color: "#000",
@@ -27,37 +27,37 @@ const styles = {
     marginBottom: "10px",
     "&:hover": {
       color: "#000",
-      textDecoration: "none",
+      textDecoration: "none"
     },
     "&:focus": {
       color: "#000",
-      textDecoration: "none",
+      textDecoration: "none"
     },
     "@media (min-width: 768px)": {
-      fontSize: "75px",
-    },
+      fontSize: "75px"
+    }
   },
   userTools: {
     float: "right",
     margin: "0",
     padding: "0",
     "&:hover a": {
-      textDecoration: "none",
-    },
+      textDecoration: "none"
+    }
   },
   sectionLinksNav: {
     borderTop: "1px solid black",
     fontFamily: "Circular Std",
     listStyleType: "none",
-    padding: "6px",
+    padding: "6px"
   },
   sectionListItem: {
     display: "inline",
-    margin: "0px 13px",
+    margin: "0px 13px"
   },
   navSearchButton: {
     top: "-1px",
-    position: "relative",
+    position: "relative"
   },
   sectionLink: {
     color: "#000",
@@ -65,14 +65,14 @@ const styles = {
     fontWeight: 300,
     textDecoration: "none",
     "&:hover": {
-      color: "#000",
+      color: "#000"
     },
     "&:active": {
-      color: "#000",
+      color: "#000"
     },
     "&:focus": {
-      color: "#000",
-    },
+      color: "#000"
+    }
   },
   hamburger: {
     display: "inline",
@@ -80,21 +80,21 @@ const styles = {
     height: "23px",
     opacity: "0.48",
     marginRight: "4px",
-    float: "left",
+    float: "left"
   },
   buttonName: {
     fontFamily: "Circular Std",
     fontSize: "14px",
     fontWeight: "bold",
     textAlign: "center",
-    color: "#000000",
+    color: "#000000"
   },
   subscribeText: {
     fontFamily: "Circular Std",
     fontSize: "15px",
     fontWeight: "bold",
     textAlign: "center",
-    color: "#ffffff",
+    color: "#ffffff"
   },
   subscribeTo: {
     position: "relative",
@@ -102,14 +102,14 @@ const styles = {
     fontFamily: "Circular Std",
     fontSize: "12px",
     textAlign: "center",
-    color: "#ffffff",
+    color: "#ffffff"
   },
   signInText: {
     fontFamily: "Circular Std",
     fontSize: "14px",
     fontWeight: "bold",
     textAlign: "center",
-    color: "#000000",
+    color: "#000000"
   },
   positioning: {
     float: "right",
@@ -117,8 +117,8 @@ const styles = {
     display: "inline",
     position: "relative",
     // left: "-20vh",
-    top: "3vh",
-  },
+    top: "3vh"
+  }
 };
 
 const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
@@ -137,11 +137,11 @@ const navButtonStyles = {
     "& span": {
       position: "relative",
       top: "2px",
-      transitionDuration: ".3s",
+      transitionDuration: ".3s"
     },
     "&:hover span": {
-      color: "#888",
-    },
+      color: "#888"
+    }
   },
   Subscribe: {
     width: "116px",
@@ -153,7 +153,7 @@ const navButtonStyles = {
     backgroundColor: "#DB2B39",
     border: "solid 1.5px #DB2B39",
     display: "inline",
-    top: isSafari ? "-20px" : isFirefox ? "-4px" : "0",
+    top: isSafari ? "-20px" : isFirefox ? "-4px" : "0"
   },
   SignIn: {
     borderRadius: 0,
@@ -167,18 +167,20 @@ const navButtonStyles = {
     display: "inline",
     position: "relative",
     "& span": {
-      transitionDuration: ".3s",
+      transitionDuration: ".3s"
     },
     "&:hover span": {
-      color: "#888",
-    },
-  },
+      color: "#888"
+    }
+  }
 };
 
 const NavButton = ({ children, onClick, classes, type }) => {
   return (
     <button onClick={onClick} className={classes[type]}>
-      <div>{children}</div>
+      <div>
+        {children}
+      </div>
     </button>
   );
 };
@@ -190,7 +192,7 @@ const Masthead = ({
   openSidebar,
   sections,
   session,
-  openSubscriptionModal,
+  openSubscriptionModal
 }) => {
   const unwantedSectionNames = ["Art", "Photo", "Video", "10/31 Terror Attack"];
   return (
@@ -202,26 +204,32 @@ const Masthead = ({
       <Link className={classes.theSpectatorLogo} to="/">
         The Spectator
       </Link>
-      {!session.userId && (
+      {!session.userId &&
         <table className={classes.positioning}>
-          <th id="problematic-subscribe-button-container-in-moz">
-            <StyledNavButton onClick={openSubscriptionModal} type="Subscribe">
-              <span className={classes.subscribeText}>Subscribe</span>
-              <br />
-              <span className={classes.subscribeTo}>to our newsletter</span>
-            </StyledNavButton>
-          </th>
-          <th>
-            <div className={classes.userTools}>
-              <Link to="/myaccount/profile">
-                <StyledNavButton type="SignIn">
-                  <span className={classes.signInText}>Sign In</span>
+          <tbody>
+            <tr>
+              <th id="problematic-subscribe-button-container-in-moz">
+                <StyledNavButton
+                  onClick={openSubscriptionModal}
+                  type="Subscribe"
+                >
+                  <span className={classes.subscribeText}>Subscribe</span>
+                  <br />
+                  <span className={classes.subscribeTo}>to our newsletter</span>
                 </StyledNavButton>
-              </Link>
-            </div>
-          </th>
-        </table>
-      )}
+              </th>
+              <th>
+                <div className={classes.userTools}>
+                  <Link to="/myaccount/profile">
+                    <StyledNavButton type="SignIn">
+                      <span className={classes.signInText}>Sign In</span>
+                    </StyledNavButton>
+                  </Link>
+                </div>
+              </th>
+            </tr>
+          </tbody>
+        </table>}
       <ul className={classes.sectionLinksNav}>
         {Object.values(sections).map(section => {
           if (!unwantedSectionNames.includes(section.name)) {
@@ -267,7 +275,7 @@ const Masthead = ({
 const mapStateToProps = state => ({
   session: state.accounts.session,
   currentUser: getCurrentUser(state),
-  sections: getTopLevelSections(state),
+  sections: getTopLevelSections(state)
 });
 
 const mapDispatchToProps = dispatch => {
@@ -275,5 +283,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  injectSheet(styles)(Masthead),
+  injectSheet(styles)(Masthead)
 );
