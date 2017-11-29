@@ -6,8 +6,7 @@ import appHistory from "tools/appHistory";
 
 export const searchArticles = query => {
   query = query.search;
-  const url = "/search/q/" + query;
-  appHistory.push(url);
+  appHistory.push(`/search/q/${query}`);
   return dispatch => {
     dispatch({ type: t.SEARCH_ARTICLES_PENDING });
     axios
