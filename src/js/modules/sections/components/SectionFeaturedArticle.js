@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import { Byline, Dateline } from "../../articles/components";
 
 const SectionFeaturedArticle = ({ classes, section, featuredArticle }) => {
   return (

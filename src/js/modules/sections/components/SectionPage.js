@@ -328,7 +328,7 @@ const SectionPage = ({
             />
           </Col>}
         <Col xs={12} sm={5} md={5} lg={5} className={classes.featuredArticle}>
-          <SectionFeaturedArticle/>
+          <SectionFeaturedArticle classes={classes} section={featuredArticleSection} />
         </Col>
       </Row>
 
