@@ -39,6 +39,7 @@
     "gulp-strip-debug": "^1.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-useref": "^3.1.2",
+    "gulp-version-number": "^0.1.7",
     "history": "^4.7.2",
     "livereactload": "^4.0.0-beta.2",
     "moment": "^2.18.1",

@@ -23,6 +23,7 @@ export const closeLightbox = () => ({
 
 export const fetchAllData = () => {
   const loadingIcon = document.querySelector(".loading");
+  console.log(STUY_SPEC_API_URL)
   return dispatch => {
     dispatch({ type: t.FETCH_INIT_DATA_PENDING });
     axios
@@ -49,7 +50,7 @@ const sliceNames = [
   "media",
   "users",
   "roles",
-  "userRoles",
+  "profiles",
   "authorships",
   "outquotes",
 ];

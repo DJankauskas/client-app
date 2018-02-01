@@ -6,7 +6,7 @@ const initialState = {
   error: null,
   users: {},
   roles: {},
-  userRoles: [],
+  profiles: [],
 };
 
 const reducer = (state = { ...initialState }, action) => {
@@ -18,7 +18,7 @@ const reducer = (state = { ...initialState }, action) => {
           acc[user.id] = user;
           return acc;
         }, {}),
-        userRoles: action.payload.userRoles,
+        profiles: action.payload.profiles,
         roles: action.payload.roles.reduce((acc, role) => {
           acc[role.id] = role;
           return acc;

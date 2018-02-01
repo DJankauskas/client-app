@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 
 export const getUsers = state => state.users.users;
 export const getRoles = state => state.users.roles;
-export const getUserRoles = state => state.users.userRoles;
+export const getprofiles = state => state.users.profiles;
 
 const getRequestedContributorSlug = (state, props) =>
   props.match.params.contributor_slug;
@@ -14,17 +14,17 @@ const getRequestedPhotographerSlug = (state, props) =>
 const getRoleFromProps = (state, props) => props.role;
 
 export const getContributorFromSlug = createSelector(
-  [getUsers, getUserRoles, getRequestedContributorSlug, getRoles],
-  (users, userRoles, requestedContributorSlug, roles) => {
+  [getUsers, getprofiles, getRequestedContributorSlug, getRoles],
+  (users, profiles, requestedContributorSlug, roles) => {
     const user = Object.values(users).find(user => {
       return user.slug === requestedContributorSlug;
     });
     if (
       user &&
-      userRoles.find(userRole => {
+      profiles.find(profile => {
         return (
-          userRole.userId === user.id &&
-          roles[userRole.roleId].title === "Contributor"
+          profile.userId === user.id &&
+          roles[profile.roleId].title === "Contributor"
         );
       })
     ) {
@@ -34,17 +34,17 @@ export const getContributorFromSlug = createSelector(
 );
 
 export const getIllustratorFromSlug = createSelector(
-  [getUsers, getUserRoles, getRequestedIllustratorSlug, getRoles],
-  (users, userRoles, requestedIllustratorSlug, roles) => {
+  [getUsers, getprofiles, getRequestedIllustratorSlug, getRoles],
+  (users, profiles, requestedIllustratorSlug, roles) => {
     const user = Object.values(users).find(user => {
       return user.slug === requestedIllustratorSlug;
     });
     if (
       user &&
-      userRoles.find(userRole => {
+      profiles.find(profile => {
         return (
-          userRole.userId === user.id &&
-          roles[userRole.roleId].title === "Illustrator"
+          profile.userId === user.id &&
+          roles[profile.roleId].title === "Illustrator"
         );
       })
     ) {
@@ -54,17 +54,17 @@ export const getIllustratorFromSlug = createSelector(
 );
 
 export const getPhotographerFromSlug = createSelector(
-  [getUsers, getUserRoles, getRequestedPhotographerSlug, getRoles],
-  (users, userRoles, requestedPhotographerSlug, roles) => {
+  [getUsers, getprofiles, getRequestedPhotographerSlug, getRoles],
+  (users, profiles, requestedPhotographerSlug, roles) => {
     const user = Object.values(users).find(user => {
       return user.slug === requestedPhotographerSlug;
     });
     if (
       user &&
-      userRoles.find(userRole => {
+      profiles.find(profile => {
         return (
-          userRole.userId === user.id &&
-          roles[userRole.roleId].title === "Photographer"
+          profile.userId === user.id &&
+          roles[profile.roleId].title === "Photographer"
         );
       })
     ) {
@@ -77,11 +77,11 @@ export const getPhotographerFromSlug = createSelector(
  * The selector returns all users for the RolePage.
  */
 export const getUsersInRole = createSelector(
-  [getUsers, getRoleFromProps, getUserRoles],
-  (users, role, userRoles) => {
-    return userRoles.reduce((acc, userRole) => {
-      if (userRole.roleId === role.id) {
-        const user = users[userRole.userId];
+  [getUsers, getRoleFromProps, getprofiles],
+  (users, role, profiles) => {
+    return profiles.reduce((acc, profile) => {
+      if (profile.roleId === role.id) {
+        const user = users[profile.userId];
         acc[user.id] = user;
       }
       return acc;
