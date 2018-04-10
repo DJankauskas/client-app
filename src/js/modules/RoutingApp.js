@@ -30,6 +30,8 @@ import { DescriptionPage } from "./descriptions/components";
 import { SectionPage } from "./sections/components";
 import { ArtistPage, ContributorPage } from "./users/components";
 
+import { CmsPage, CmsMasthead } from "./cms/components";
+
 import { createSession } from "./accounts/actions";
 
 import { RecruitmentPage } from "./recruitment/components"
