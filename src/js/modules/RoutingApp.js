@@ -30,7 +30,7 @@ import { DescriptionPage } from "./descriptions/components";
 import { SectionPage } from "./sections/components";
 import { ArtistPage, ContributorPage } from "./users/components";
 
-import { CmsPage, CmsMasthead, CreateArticlePage, RichEditor } from "./cms/components";
+import { CmsPage, CmsMasthead, CreateArticlePage, EditArticle, RichEditor } from "./cms/components";
 
 import { createSession } from "./accounts/actions";
 
@@ -181,7 +181,7 @@ class RoutingApp extends PureComponent {
                   session ? <EditProfilePage /> : <Redirect to="/myaccount" />}
               />
               {/*<Route path="/cms" key={"cms-masthead"} component={CmsMasthead} />*/}
-              <Route path="/cms" key={"cms"} component={RichEditor} />
+              <Route path="/cms" key={"cms"} component={EditArticle} />
               <Route path={"/search"} key={"search"} component={SearchPage} />
               <Route path="*" key={"404"} component={NotFoundPage} />
             </Switch>
