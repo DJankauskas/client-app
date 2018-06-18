@@ -7,9 +7,9 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 import store from "./store";
 import Provider from "react-redux/lib/components/Provider";
 import { STUY_SPEC_API_URL } from "./constants";
+import client from "./modules/apolloClient"
 
 import { ApolloProvider } from "react-apollo";
-import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
@@ -23,17 +23,12 @@ try {
 import { VERSION } from "./versionInfo";
 console.log("appVersion ->", VERSION);
 
-const apolloClient = new ApolloClient({
-  link: new HttpLink({ uri: `${STUY_SPEC_API_URL}/graphql` }),
-  cache: new InMemoryCache(),
-});
-
 import { objectFilter } from "./utils";
 Object.filter = objectFilter;
 
 ReactDOM.render(
   <AppContainer>
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={client}>
       <Provider store={store}>
         <RoutingApp />
       </Provider>
