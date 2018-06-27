@@ -20,6 +20,7 @@ import {
   CREATE_SUBSCRIBER_PENDING,
   CREATE_SUBSCRIBER_FULFILLED,
   CREATE_SUBSCRIBER_REJECTED,
+  UPDATE_USER_TOKENS,
 } from "./actionTypes";
 import { CREATE_COMMENT_FULFILLED } from "../comments/actionTypes";
 
@@ -36,6 +37,7 @@ const initialState = {
 
 const isSessionValid = session => {
   const requiredHeaders = ["access-token", "expiry", "client", "uid"];
+  if (session === null || session === undefined) return false;
   return requiredHeaders.every(header => header in session);
 };
 
@@ -209,6 +211,18 @@ const reducer = (state = { ...initialState }, action) => {
         ...state,
         session: null,
       };
+    }
+    case UPDATE_USER_TOKENS: {
+      const headers = action.payload;
+      if (isSessionValid(headers)) {
+        localStorage.setItem("session", JSON.stringify(headers));
+        console.log("headers in updateUserTokens (accounts reducer:");
+        console.dir(headers);
+        return {
+          ...state,
+          session: headers,
+        };
+      }
     }
 
     case "@@redux-form/DESTROY": {

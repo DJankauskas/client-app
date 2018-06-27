@@ -181,8 +181,7 @@ export const subscribe = values => {
           type: t.CREATE_SUBSCRIBER_REJECTED,
           payload: err,
         });
-      });
-  };
+      })  };
 };
 
 export const validateToken = session => {
@@ -223,3 +222,8 @@ export const createSession = session => {
     dispatch(validateToken(session));
   };
 };
+
+export const updateUserTokens = session => ({
+  type: t.UPDATE_USER_TOKENS,
+  payload: session,
+});
